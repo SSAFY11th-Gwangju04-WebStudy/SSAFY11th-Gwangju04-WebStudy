@@ -11,18 +11,18 @@ import java.util.StringTokenizer;
 /**
  * 
  * 
- ���� ���� ���ٹ�� 
- bfs : ���Ž�� - map : �� q�� ���� ������ �ִ� ���踦 map���� ��Ÿ��
+ 문제 기존 접근방법 
+ bfs : 경로탐색 - map : 각 q에 현재 가지고 있는 열쇠를 map으로 나타냄
  
- ����� �� - ���� bfs�� �ٸ��� ���� ������ �ٽ� �湮 �ؾ� �Ǵ� ����� �������� �𸣰ڴ�. 
- - visited ó���� �Ѵٸ� �ٽ� �湮�� �ȵǰ� ���ϸ� q�� ���̰� ���������� ���� ���̴� ���� �߻�
+ 어려운 점 - 기존 bfs와 다르게 갔던 지점도 다시 방문 해야 되는 방법이 무엇인지 모르겠다. 
+ - visited 처리를 한다면 다시 방문이 안되고 안하면 q가 깊이가 깊어질수록 많이 쌓이는 문제 발생
 
-���� �ذ���
-- ��Ʈ����ŷ + 3���� �迭�� �ش� ���踦 �������� �湮ó��
--> �湮�ߴ� �� �ٽ� �� �� �ִ�.
+문제 해결방법
+- 비트마스킹 + 3차원 배열로 해당 열쇠를 기준으로 방문처리
+-> 방문했던 곳 다시 갈 수 있다.
 
-��Ʈ����ŷ ����
-a b c d e f  index ��ŭ ���� ����Ʈ �� ���� 1�̸� �ش� ���踦 ������ �ִ�
+비트마스킹 사용법
+a b c d e f  index 만큼 왼쪽 시프트 한 값이 1이면 해당 열쇠를 가지고 있다
 a= 000001  1<<0      
 b= 000010  1<<1   
 c= 000100  1<<2
@@ -32,7 +32,7 @@ f= 100000  1<<5
 
  * 
  */
-public class Main_1194_�̺��� {
+public class Main_1194_이병수 {
 	static class Location {
 		int r, c, depth, key;
 
@@ -89,7 +89,7 @@ public class Main_1194_�̺��� {
 	private static int bfs(Location start) {
 		int answer = -1;
 		Queue<Location> q = new ArrayDeque<>();
-		// 3���������� ���踦 ȹ���� �� �湮�� ������ ��湮�ϱ����ؼ� 2������ ���� ��湮 X
+		// 3차원이유는 열쇠를 획득할 시 방문한 지점을 재방문하기위해서 2차원을 쓰면 재방문 X
 		boolean[][][] visited = new boolean[N][M][1 << 6];
 		visited[start.r][start.c][0] = true;
 		q.offer(start);
@@ -102,26 +102,26 @@ public class Main_1194_�̺��� {
 				int nc = loc.c + dc[d];
 				if (isIn(nr, nc) && !visited[nr][nc][key]) {
 					char ch = map[nr][nc];
-					// ���̸� x
+					// 벽이면 x
 					if (ch == '#') {
 						continue;
 					}
 
-					// ����� ��Ʈ����ŷ���� true
-                    // int newKey = (1 << (ch - 'a')) | key;  ���� Ű�� ���� Ű�� ��ġ��
+					// 열쇠면 비트마스킹으로 true
+                    // int newKey = (1 << (ch - 'a')) | key;  현재 키와 이전 키를 합치기
 					else if (ch >= 'a' && ch <= 'f') {
 						int newKey = (1 << (ch - 'a')) | key;
 						visited[nr][nc][newKey] = true;
 						q.offer(new Location(nr, nc, loc.depth + 1,newKey));
 					}
 					else if (ch >= 'A' && ch <= 'F') {
-						// �� ���谡 ������
+						// 문 열쇠가 있을때
 						if ((key & (1 << ch - 'A')) != 0) {
 							visited[nr][nc][key] = true;
 							q.offer(new Location(nr, nc, loc.depth + 1, key));
 						}
 					}
-					// Ż�ⱸ�� ������
+					// 탈출구면 끝내기
 					else if (ch == '1') {
 						answer = loc.depth + 1;
 						return answer;
@@ -146,3 +146,139 @@ public class Main_1194_�̺��� {
 		return nr >= 0 && nr < N && nc >= 0 && nc < M;
 	}
 }
+
+
+//초기코드
+
+// import java.io.BufferedReader;
+// import java.io.IOException;
+// import java.io.InputStreamReader;
+// import java.util.ArrayDeque;
+// import java.util.HashMap;
+
+// import java.util.Map;
+// import java.util.Queue;
+// import java.util.StringTokenizer;
+
+// /**
+//  * 
+//  * 문제 접근방법 - bfs : 경로탐색 - map : 각 q에 현재 가지고 있는 열쇠를 map으로 나타냄
+//  * 
+//  * 어려운 점 - 기존 bfs와 다르게 갔던 지점도 다시 방문 해야 되는 방법이 무엇인지 모르겠다. - visited 처리를 한다면 다시
+//  * 방문이 안되고 안하면 q가 깊이가 깊어질수록 많이 쌓이는 문제 발생
+//  * 
+//  */
+// public class Main {
+// 	static class Location {
+// 		int r, c, depth, key;
+
+// 		public Location(int r, int c, int depth, int key) {
+// 			super();
+// 			this.r = r;
+// 			this.c = c;
+// 			this.depth = depth;
+// 			this.key = key;
+// 		}
+
+// 		public Location(int depth) {
+// 			super();
+// 			this.depth = depth;
+// 		}
+
+// 		@Override
+// 		public String toString() {
+// 			return "Location [r=" + r + ", c=" + c + ", depth=" + depth + ", key=" + key + "]";
+// 		}
+
+// 	}
+
+// 	static int[] dr = { -1, 1, 0, 0 };
+// 	static int[] dc = { 0, 0, -1, 1 };
+
+// 	private static int N;
+// 	private static int M;
+// 	private static char[][] map;
+
+// 	public static void main(String[] args) throws IOException {
+// 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+// 		StringTokenizer st = null;
+
+// 		System.out.println(1 << 6);
+// 		st = new StringTokenizer(br.readLine());
+// 		N = Integer.parseInt(st.nextToken());
+// 		M = Integer.parseInt(st.nextToken());
+// 		Location startLoc = null;
+// 		map = new char[N][M];
+// 		for (int i = 0; i < N; i++) {
+// 			String str = br.readLine();
+// 			for (int j = 0; j < M; j++) {
+// 				map[i][j] = str.charAt(j);
+// 				if (map[i][j] == '0') {
+// 					startLoc = new Location(i, j, 0, 0);
+
+// 				}
+// 			}
+// 		}
+
+// 		int ans = bfs(startLoc);
+// 		System.out.println(ans);
+// 	}
+
+// 	private static int bfs(Location start) {
+// 		int answer = -1;
+// 		Queue<Location> q = new ArrayDeque<>();
+// 		// 3차원이유는 열쇠를 획득할 시 방문한 지점을 재방문하기위해서 2차원을 쓰면 재방문 X
+// 		boolean[][][] visited = new boolean[N][M][1 << 6];
+// 		visited[start.r][start.c][0] = true;
+// 		q.offer(start);
+
+// 		while (!q.isEmpty()) {
+// 			Location loc = q.poll();
+// 			int key = loc.key;
+// 			for (int d = 0; d < 4; d++) {
+// 				int nr = loc.r + dr[d];
+// 				int nc = loc.c + dc[d];
+// 				if (isIn(nr, nc) && !visited[nr][nc][key]) {
+// 					char ch = map[nr][nc];
+// 					// 벽이면 x
+// 					if (ch == '#') {
+// 						continue;
+// 					}
+// 					// 열쇠면 비트마스킹으로 true
+// 					else if (ch >= 'a' && ch <= 'f') {
+// 						int newKey = (1 << (ch - 'a')) | key;
+// 						visited[nr][nc][newKey] = true;
+// 						q.offer(new Location(nr, nc, loc.depth + 1,newKey));
+// 					}
+// 					else if (ch >= 'A' && ch <= 'F') {
+// 						// 문 열쇠가 있을때
+// 						if ((key & (1 << ch - 'A')) != 0) {
+// 							visited[nr][nc][key] = true;
+// 							q.offer(new Location(nr, nc, loc.depth + 1, key));
+// 						}
+// 					}
+// 					// 탈출구면 끝내기
+// 					else if (ch == '1') {
+// 						answer = loc.depth + 1;
+// 						return answer;
+// 					}
+// 					else {
+// 						q.offer(new Location(nr, nc, loc.depth + 1, key));
+// 					}
+			
+					
+
+// 				}
+
+// 			}
+
+// 		}
+// 		return answer;
+// 	}
+
+// 	private static boolean isIn(int nr, int nc) {
+// 		// TODO Auto-generated method stub
+// 		return nr >= 0 && nr < N && nc >= 0 && nc < M;
+// 	}
+// }
+
