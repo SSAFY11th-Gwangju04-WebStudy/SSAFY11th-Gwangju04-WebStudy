@@ -1,12 +1,13 @@
 # Spring MVC에 대한 공부를 기록하는 공간입니다
-<br></br>
+
 <details>
-  <summary>Section 0, 1</summary>
-    - 웹 서버
-      - HTTP 기반으로 동작
-      - Client → Server : Request
-      - Server → Client : Response
-- 서블릿
+  <summary>Section 0, 1</summary>  
+  
+  - 웹 서버
+    - HTTP 기반으로 동작
+    - Client → Server : Request
+    - Server → Client : Response
+  - 서블릿
     - urlPatterns(url)로 정의한 url을 호출 시 서블릿 코드 실행
     - HTTP 요청 정보를 편리하게 사용할 수 있는 HttpServletRequest
     - HTTP 응답 정보를 편리하게 제공할 수 있는 HttpServletResponse
@@ -45,27 +46,35 @@
                 - 클라우드면 일단 서버부터 늘리고 이후에 튜닝
                 - 아니면 열심히 튜닝
 </details>
+
 <details>
   <summary>Section 2</summary>
-  - 인증
-  ![section2](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/2b27f4e9-a01e-4014-93b2-3ffb32559439)
   
+  > 인증
+    ![section2](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/2b27f4e9-a01e-4014-93b2-3ffb32559439)
 </details>
+
 <details>
   <summary>Section 3</summary>
-  - 인증
-  ![section3](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/0e6ad273-a577-493b-8827-1a8c42ac2048)
+  
+  > 인증
+    ![section3](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/0e6ad273-a577-493b-8827-1a8c42ac2048)
+    
   - WEB-INF 안에 생성된 jsp는 주소창에 직접 입력해도 실행되지 않고 controller를 통해야만 접근이 가능함
 </details>
+
 <details>
   <summary>Section 4</summary>
 </details>
+
 <details>
   <summary>Section 5</summary>
 </details>
+
 <details>
   <summary>Section 6</summary>
 </details>
+
 <details>
   <summary>Section 7</summary>
 </details>
