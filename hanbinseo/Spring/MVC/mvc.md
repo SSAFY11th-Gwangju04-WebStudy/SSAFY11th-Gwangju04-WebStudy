@@ -1,12 +1,13 @@
 # Spring MVC에 대한 공부를 기록하는 공간입니다
-<br></br>
+
 <details>
-  <summary>Section 0, 1</summary>
-    - 웹 서버
-      - HTTP 기반으로 동작
-      - Client → Server : Request
-      - Server → Client : Response
-- 서블릿
+  <summary>Section 0, 1</summary>  
+  
+  - 웹 서버
+    - HTTP 기반으로 동작
+    - Client → Server : Request
+    - Server → Client : Response
+  - 서블릿
     - urlPatterns(url)로 정의한 url을 호출 시 서블릿 코드 실행
     - HTTP 요청 정보를 편리하게 사용할 수 있는 HttpServletRequest
     - HTTP 응답 정보를 편리하게 제공할 수 있는 HttpServletResponse
@@ -45,27 +46,71 @@
                 - 클라우드면 일단 서버부터 늘리고 이후에 튜닝
                 - 아니면 열심히 튜닝
 </details>
+
 <details>
   <summary>Section 2</summary>
-  - 인증
-  ![section2](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/2b27f4e9-a01e-4014-93b2-3ffb32559439)
   
+  > 인증
+    ![section2](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/2b27f4e9-a01e-4014-93b2-3ffb32559439)
+
+  - HttpServletRequest
+    - HTTP 요청 데이터
+    - GET
+    - POST HTML form
+    - API 메시지 바디
+      - 단순 텍스트
+      - JSON
+  - HttpServletResponse
+    - HTTP 응답 데이터
+      - 단순 텍스트, HTML
+      - API JSON
 </details>
+
 <details>
   <summary>Section 3</summary>
-  - 인증
-  ![section3](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/0e6ad273-a577-493b-8827-1a8c42ac2048)
+  
+  > 인증
+    ![section3](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/0e6ad273-a577-493b-8827-1a8c42ac2048)
+
+  - 회원 관리 웹 애플리케이션 구현
+  - MVC 패턴 적용
+  
   - WEB-INF 안에 생성된 jsp는 주소창에 직접 입력해도 실행되지 않고 controller를 통해야만 접근이 가능함
 </details>
+
 <details>
   <summary>Section 4</summary>
+
+  >인증
+    ![image](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/44e10d67-211e-4bcd-8ac4-c1bae0ff7192)
+
+  - v1 : 프론트 컨트롤러를 도입
+    - 기존 구조를 최대한 유지하면서 프론트 컨트롤러 도입
+  - v2 : View 분류
+    - 단순 반복되는 뷰 로직 분리
+  - v3 : Model 추가
+    - 서블릿 종속성 제거
+    - 뷰 이름 중복 제거
+  - v4 : 단순하고 실용적인 컨트롤러
+    - v3와 거의 비슷
+    - 구현 입장에서 ModelView를 직접 생성해서 반환하지 않도록 편리한 인터페이스 제공
+  - v5 : 유연한 컨트롤러
+    - 어댑터 도입
+    - 어댑터를 추가해서 프레임워크를 유연하고 확장성 있게 설계
+
+  > 최종 MVC 구조
+    ![image](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/908c495a-6b44-49c1-963a-f69233442dde)
+
 </details>
+
 <details>
   <summary>Section 5</summary>
 </details>
+
 <details>
   <summary>Section 6</summary>
 </details>
+
 <details>
   <summary>Section 7</summary>
 </details>
