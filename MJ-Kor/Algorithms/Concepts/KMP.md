@@ -25,7 +25,7 @@
    - 문자열 $N$의 각 인덱스마다 맨 앞부터 해당 인덱스까지의 부분 문자열중 접두사와 접미사가 일치하는 최대 길이로 계산
 - 예시
    - "a b a b a c a"인 문자열 $N$이 주어졌을 때
-   ![alt text](/imgs/PartialMatchTable.png)
+   ![alt text](./imgs/PartialMatchTable.png)
 <br><br>
 
 > 구현 및 시간 복잡도
