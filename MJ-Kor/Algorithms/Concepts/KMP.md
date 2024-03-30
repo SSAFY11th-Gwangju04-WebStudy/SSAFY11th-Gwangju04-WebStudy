@@ -26,7 +26,7 @@
 - 예시
    - "a b a b a c a"인 문자열 $N$이 주어졌을 때
    <img src = "https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/Algorithms/Concepts/imgs/PartialMatchTable.png">
-<br><br>
+<br>
 
 > 구현 및 시간 복잡도
 
