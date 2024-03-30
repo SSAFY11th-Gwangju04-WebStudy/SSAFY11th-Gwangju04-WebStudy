@@ -175,7 +175,7 @@ public HelloData responseBodyJsonV2() {
 ```
 
 ### HTTPMessageConverter
-!()[[https://i.ibb.co/K5ZLdD0/2024-03-30-10-51-40.png]]
+![]([https://i.ibb.co/K5ZLdD0/2024-03-30-10-51-40.png)
 - 스프링 MVC가 HTTP 메시지 컨버터 적용하는 경우
 	- HTTP 요청: @RequestBody, HttpEntity(RequestEntity)
 	- HTTP 응답: @ResponseBody, HttpEntity(ResponseEntity)
@@ -204,7 +204,7 @@ public HelloData responseBodyJsonV2() {
 3. 만들어진 파마리터로 핸들러 호출
 https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-arguments
 
-!()[https://i.ibb.co/34rT6n8/2024-03-31-8-44-18.png]
+![](https://i.ibb.co/34rT6n8/2024-03-31-8-44-18.png)
 
 - Argument Resolver 가 HTTP Message Converter 를 찾아 처리할 수 있는것을 찾음
 - 스프링은 Argument Resolver, 메세지 컨버터, Return Value Handler 모두 인터페이스로 구현되어 있다. 따라서 추가 기능이 필요하다면 확장성 있게 구현할 수 있다
