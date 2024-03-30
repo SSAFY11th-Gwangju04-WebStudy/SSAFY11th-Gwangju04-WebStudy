@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e273298e-b4f1-4aec-89c0-90949731ec1e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +60,9 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2eGrvApDtPBLMarIIExFZGU40Ev" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -75,6 +79,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.ServletApplication.executor": "Run",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/workbench/SSAFY11th-Gwangju04-WebStudy/hanbinseo/Spring/MVC/servlet/build.gradle",
     "node.js.detected.package.eslint": "true",
@@ -164,11 +169,23 @@
       <workItem from="1711622977923" duration="6418000" />
       <workItem from="1711708220870" duration="8664000" />
       <workItem from="1711773655931" duration="173000" />
+      <workItem from="1711773843493" duration="4208000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
