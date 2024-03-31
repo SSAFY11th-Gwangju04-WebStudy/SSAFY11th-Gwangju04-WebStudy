@@ -1,17 +1,15 @@
 # 과목 평가 정리
 
----
-
 ## URL 매핑 방법
 
 - web.xml
     - 각 servlet으로 이동할 수 있는 url을 매핑할 수 있다
-    - <servlet>과 <servlet-mapping>이 한 쌍
-        - <servlet>과 <servlet-mapping>의 <servlet-name>이 일치해야 한다.
-        - <servlet-mapping>의 <url-pattern>에 매핑할 url을 입력하면 된다.
-        - <url-pattern>을 여러 개 두어서 여러 개를 매칭할 수 있다.
+    - \<servlet\>과 \<servlet-mapping\>이 한 쌍
+        - \<servlet\>과 \<servlet-mapping\>의 \<servlet-name\>이 일치해야 한다.
+        - \<servlet-mapping\>의 \<url-pattern\>에 매핑할 url을 입력하면 된다.
+        - \<url-pattern\>을 여러 개 두어서 여러 개를 매칭할 수 있다.
             
-            ![Untitled](%E1%84%80%E1%85%AA%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%91%E1%85%A7%E1%86%BC%E1%84%80%E1%85%A1%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20bae25f97168f40cbbdd5412b6790b964/Untitled.png)
+            ![Untitled](./imgs/weekly1.png)
             
 - @WebServlet
     - servlet 파일 내부에 어노테이션을 등록하여 url을 매핑할 수 있다.
@@ -28,14 +26,6 @@
         
 
 ## Servlet
-
-- 특징
-- http servlet life cycle
-- init 메서드, service 메서드가 왜 있나?
-- 관련 객체 및 메서드들
-    - http session
-    - servlet context 등
-    - 객체들이 가지고 있는 getParameter, getAttribute 이런 메서드들
 
 - 특징
     - 웹 페이지를 동적으로 생성하는 서버측 프로그램이며, 자바 클래스의 일종이다.
@@ -88,9 +78,6 @@
     
 
 ## JSP
-
-- 주요 내장 객체 및 메서드
-- 스크립틀릿(<%, <%= 등) 별 기능 및 사용법
 
 - JSP 지시어
     - page Directive
@@ -148,9 +135,6 @@
         - <%-- 주석 code --%>
 
 ## Cookie
-
-- 개념 및 특징
-- 생성, 사용과 관련된 객체 및 메서드들
 
 - 개념
     - 서버에서 사용자의 컴퓨터에 저장하는 정보 파일 (String)
@@ -221,9 +205,6 @@
 
 ## JSTL
 
-- 사용 설정
-- 사용 core 라이브러리 중에서 주요 태그들(c: set, c: if 등)
-
 - JSTL Tag
     - <%@ taglib prefix=”prefix” uri=”uri” %>
     - prifix
@@ -255,9 +236,6 @@
         - var에는 발생한 예외가 담김
 
 ## EL
-
-- JSP 구문 EL로 변환
-- JSP 페이지에서 EL 적용 결과 예측
 
 - 개념
     - JSP에서 <%=%>를 대체할 수 있다.
@@ -299,8 +277,6 @@
 
 ## 클라이언트 요청 방식
 
-    - get, post
-
 - GET
     - 특징
         - 전송되는 데이터가 URL 뒤에 Query String으로 전달.
@@ -323,7 +299,7 @@
 
 ## Servlet에서 처리 방법
 
-    - Service안에 doget, dopost가 존재
+- Servlet에서 받은 client의 요청은 Service()가 받고, 이를 doXXX method에게 뿌려준다.
 
 ## 에러 응답 코드들
 
