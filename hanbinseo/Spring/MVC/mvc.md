@@ -136,6 +136,32 @@
 
 <details>
   <summary>Section 6</summary>
+
+  >인증
+  >![image](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/a8363456-c827-4842-8218-7b0f09656089)
+
+  - LOG 출력
+    - @Slf4j
+  - Mapping
+    - 편리한 축약 Annotation
+      - @GetMapping
+      - @PostMapping
+      - @PutMapping
+      - @DeleteMapping
+      - @PatchMapping
+    - @PathVariable
+  - Http Request
+    - parameter
+      - Query param, HTML Form
+      - @RequestParam
+      - @ModelAttribute
+    - message
+      - 단순 텍스트
+      - JSON
+  - Http Response
+    - 정적 리소스, 뷰 템플릿
+    - HTTP API, message body에 직접 입력
+
 </details>
 
 <details>
