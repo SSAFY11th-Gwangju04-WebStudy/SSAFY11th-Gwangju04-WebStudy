@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시글 작성</title>
+</head>
+<body>
+<h1>게시글 작성</h1>
+<form action="#" th:action="@{/posts}" th:object="${post}" method="post">
+    <div>
+        <label for="title">제목</label>
+        <input type="text" id="title" th:field="*{title}" />
+    </div>
+    <div>
+        <label for="content">내용</label>
+        <textarea id="content" th:field="*{content}"></textarea>
+    </div>
+    <div>
+        <button type="submit">작성</button>
+    </div>
+</form>
+</body>
+</html>
