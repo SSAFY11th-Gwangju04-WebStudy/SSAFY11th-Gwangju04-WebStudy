@@ -1,0 +1,207 @@
+# 문제
+
+[SW Expert Academy](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5V1SYKAaUDFAWu)
+
+---
+
+# 접근 방법
+
+- 약품의 최소 개수를 구하기 위해 부분집합을 조합으로 변경 후  부분집합의 개수를 0개 작은 수 부터 탐색 
+- TRUE,FALSE 고르고 안고르고의 부분집합이 아니라 부분집합의 길이를 정해주고  선택된 배열의 초기값을 -1값으로 지정해두고 A,B 둘 중 하나를 고르면 된다.
+- MAP COPY 및 MAP 약품 뿌려 맵을 변경 했다  -> 이러면 시간 초과가 난다 -> selected[] 배열에 부분집합으로 골랐던 값들을 이용해서 맵 수정없이 연속된 패턴을 찾아낼 수 있다.
+- -1= map값   0 = 0  , 1=1  이렇게 두고 모든 행이 연속된 값을 가질 때 정답 출력 후 종료시키면된다.
+---
+
+# 배운 내용
+
+- subset : 3 ^d
+- 조합을 통해 모든 부분집합을 확인하는 것이 아니라 최소 약품 투입부터 적용하니까 
+- 부분집합은 1개의 약품을 선택하는거부터 하는 게 아니라 랜덤이다.
+- 하지만 결과는 그리차이없음 - 테스트 케이스가 별로없어서 그런거같다. 내가 한 조합 코드가 더 빠른게 맞다.?
+- 부분집합 + 가지치기 하는게 속도가 진짜 빠르다. 이유는 모름
+
+---
+
+# 어려웠던 점
+
+- 부분집합을 구현하는 것을 까먹었다.
+- 최소 약품 투입의 모든 경우 만드는 방법인 부분조합을 떠올리지 못하고 조합으로 부분집합을 만들었다.
+
+---
+
+# 구현 코드
+
+```jsx
+package day0402;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+public class Solution_2112_이병수_subset {
+	// 풀이1
+	// 1. 부분집합 생성시 copy + 맵에 약물 뿌리고 check하니 시간초과발생
+	// 해결: selected[i] 값을 이용해서 맵에 업데이트안해도 연속되는 수의 개수를 알 수 있다.
+	//
+
+	private static int R;
+	private static int C;
+	private static int K;
+	private static int[][] film;
+	private static int[] selected;
+	private static int[][] copyMap;
+	private static int answer;
+
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st = null;
+		int T = Integer.parseInt(br.readLine());
+		for (int t = 1; t <= T; t++) {
+			answer = Integer.MAX_VALUE;
+
+			// D =R W =C
+			st = new StringTokenizer(br.readLine());
+
+			R = Integer.parseInt(st.nextToken());
+			C = Integer.parseInt(st.nextToken());
+			K = Integer.parseInt(st.nextToken());
+
+			film = new int[R][C];
+			for (int i = 0; i < R; i++) {
+				st = new StringTokenizer(br.readLine());
+				for (int j = 0; j < C; j++) {
+					film[i][j] = Integer.parseInt(st.nextToken());
+				}
+			}
+
+			// 0~R 개수를 고르는 부분집합 구현
+			// 작은거부터하니까 시간단축 될꺼 같아서 작성함
+//			
+//			for (int i = 0; i <= R; i++) {
+//				selected = new int[R];
+//				Arrays.fill(selected, -1);
+//				if (combination(0, i, 0)) {
+//					answer = i;
+//					break;
+//				}
+//			}
+
+			// 서브셋으로 해보자.
+			selected = new int[R];
+			
+			subSet(0, 0);
+			answer = answer==Integer.MAX_VALUE?0:answer;
+
+			sb.append("#").append(t).append(" ").append(answer).append("\n");
+		}
+		System.out.println(sb.toString());
+
+	}
+
+	private static void subSet(int cnt, int selectLen) {
+		//약물선택한 길이가 기존보다 크다면 가지치기
+		if(answer<selectLen) return;
+		
+		if (cnt == R) {
+			if (isPassCheck()) {
+				answer = Math.min(selectLen, answer);
+			}
+			return;
+
+		}
+		selected[cnt] = -1;
+		subSet(cnt + 1, selectLen);
+
+		selected[cnt] = 0;
+		subSet(cnt + 1, selectLen + 1);
+
+		selected[cnt] = 1;
+		subSet(cnt + 1, selectLen + 1);
+
+	}
+	
+	//조합으로한 코드 사용 x
+	private static boolean combination(int cnt, int end, int start) {
+		if (cnt == end) {
+			// 맵을 복사하지않고 해결하는방법은 없을까?
+			// select이용하여 -1인경우는 map[i][j] , 0 :0   1 : 1 로 본 후 패스 체크 
+			//아래 맵복사 , drug 약물주입 부분 없앨 수 있다!!!
+
+			// 맵복사후 약물 투입 한다음 통과 체크
+//			copyMap = Copy();
+//			putDrug();
+			return isPassCheck();
+
+		}
+
+		for (int i = start; i < R; i++) {
+			selected[i] = 0;
+			if (combination(cnt + 1, end, i + 1))
+				return true;
+			selected[i] = 1;
+			if (combination(cnt + 1, end, i + 1))
+				return true;
+			selected[i] = -1;
+
+		}
+		return false;
+
+	}
+
+//	private static int[][] Copy() {
+//		int[][] temp = new int[R][C];
+//		for (int i = 0; i < R; i++) {
+//			temp[i] = film[i].clone();
+//		}
+//		return temp;
+//	}
+//
+//	private static void putDrug() {
+//
+//		for (int i = 0; i < R; i++) {
+//			if (selected[i] != -1) {
+//				for (int j = 0; j < C; j++) {
+//					copyMap[i][j] =selected[i];
+//				}
+//			}
+//		}
+//	}
+
+	private static boolean isPassCheck() {
+		for (int j = 0; j < C; j++) {
+			int startFilm = selected[0] == -1 ? film[0][j] : selected[0];
+			int count = 1;
+
+			for (int i = 1; i < R; i++) {
+				// 같은면 수 증가
+				int num = selected[i] == -1 ? film[i][j] : selected[i];
+				if (startFilm == num)
+					count++;
+				// 다르면 수 초기화
+				else {
+					count = 1;
+					startFilm = num;
+					continue;
+				}
+				// K개수면 끝내기
+				if (count >= K)
+					break;
+			}
+			// k보다 작으면 틀림
+			if (count < K) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+}
+
+```
+
+---
