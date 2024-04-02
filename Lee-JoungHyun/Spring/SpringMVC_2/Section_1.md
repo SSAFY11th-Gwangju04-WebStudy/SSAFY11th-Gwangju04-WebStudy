@@ -7,6 +7,7 @@
 - 공식 메뉴얼 - 기본 기능: https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html 
 - 공식 메뉴얼 - 스프링 통합: https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html
 
+
 ### 타임리프 특징
 - 서버 사이드 HTML 랜더링 (SSR)
 - 네츄럴 탬플릿 (순수 HTML를 유지하는 특징이 있음)
@@ -33,6 +34,7 @@
 	- Binary operators: and, or
 ```
 
+
 ## 텍스트 - text, utext
 
 ```thymeleaf
@@ -52,6 +54,7 @@
 - 그래서 < = &lt;, > = &gt; 등으로 변경됨! 따라서 <, > 등을 출력하려면 이스케이프 사용해야함
 - 이스케이프 = utext, [(~)]
 - 거의 이스케이프 문으로 기본 처리를 하는것이 좋다...ㅋ
+
 
 ## 변수 - SpringEL
 타임리프 에서 변수 사용시
@@ -82,6 +85,7 @@
     <p>처음 사람의 이름은 <span th:text="${first.username}"></span></p>  
 </div>
 ```
+
 
 ## 지원 기본 객체
 Spring 3.0 이상부터는 넘겨 주어야됨...? == 기본객체 지원 X 직접 넘겨라
@@ -114,4 +118,3 @@ public String basicObjects(Model model, HttpServletRequest request, HttpServletR
 </ul>
 ```
 
- 
