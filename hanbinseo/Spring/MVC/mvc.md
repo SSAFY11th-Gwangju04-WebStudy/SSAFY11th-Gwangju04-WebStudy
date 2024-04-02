@@ -166,4 +166,15 @@
 
 <details>
   <summary>Section 7</summary>
+
+  >인증
+> ![image](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/93871c0d-cce0-475d-9976-dc4695243555)
+>![image](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/f747fde7-661f-4bf0-b2de-93925811512d)
+
+- 상품 등록 웹페이지 기본 화면 구성
+  - 상품 리스트
+  - 등록하기
+  - 상세보기
+  - 수정하기
+
 </details>
