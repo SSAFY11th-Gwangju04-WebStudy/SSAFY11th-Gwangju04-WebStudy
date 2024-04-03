@@ -1,7 +1,6 @@
 # Thymeleaf
 
 
-
 ## 타임리프 소개
 - 공식 사이트: https://www.thymeleaf.org/  
 - 공식 메뉴얼 - 기본 기능: https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html 
@@ -117,4 +116,98 @@ public String basicObjects(Model model, HttpServletRequest request, HttpServletR
     <li>spring bean = <span th:text="${@helloBean.hello('Spring!')}"></span></li>  
 </ul>
 ```
+
+### URL 링크
+@{...} 문법 사용
+
+### 리터럴
+= 소스 코드의 고정된 값
+A-Z , a-z , 0-9 , [] , . , - , _  의 연속은 리터럴로 생각, 공백 X
+이는 "| ~ |" 로 리터럴 대체 가능
+
+### 연산
+- 비교연산: HTML 엔티티를 사용해야 하는 부분을 주의하자
+	- (gt), < (lt), >= (ge), <= (le), ! (not), == (eq), != (neq, ne) 
+- 조건식: 자바의 조건식과 유사하다. 
+- Elvis 연산자: 조건식의 편의 버전 
+- No-Operation: _ 인 경우 마치 타임리프가 실행되지 않는 것 처럼 동작한다. 이것을 잘 사용하면 HTML의 내 용 그대로 활용할 수 있다.
+
+### 속성 값 설정
+
+- th:속성="값" -> 속성 대체
+- th:attrappend="class=' large'" -> 속성 추가
+
+### 반복
+```
+<tr th:each="user : ${users}">
+```
+두번째 파라미터 설정 (이름 s빼면 생략가능) 시 반복 상태 확인
+반복 상태 유지 기능 
+- index : 0부터 시작하는 값 
+- count : 1부터 시작하는 값
+- size : 전체 사이즈 
+- even , odd : 홀수, 짝수 여부( boolean ) 
+- first , last :처음, 마지막 여부( boolean ) 
+- current : 현재 객체
+
+### 조건부 평가
+- if, unless 
+	- 타임리프는 해당 조건이 맞지 않으면 태그 자체를 렌더링하지 않는다. 
+	- 만약 다음 조건이 false 인 경우 ... 부분 자체가 렌더링 되지 않고 사라진다.
+
+### 주석
+```
+# 1. 표준 HTML 주석
+<!--
+<span th:text="${data}">html data</span>
+-->
+
+# 2. 타임리프 파서 주석
+<!--/* [[${data}]] */-->
+
+# 3. 타임리프 프로토타입 주석
+<!--/*/
+<span th:text="${data}">html data</span>
+/*/-->
+```
+
+### 블록
+= 타임리프의 유일한 태그
+```
+<th:block th:each="user : ${users}">
+...
+</th:block>
+```
+
+### 자바스크립트 인라인
+```
+<script th:inline="javascript">
+```
+- 그냥 JS 를 네추럴 템플릿으로 쉽게 사용하게 도와줌
+- " 처리, 이스케이프 문자 삽입 등
+- 인라인 each 지원
+```
+<!-- 자바스크립트 인라인 each -->
+<script th:inline="javascript">
+ [# th:each="user, stat : ${users}"]
+ var user[[${stat.count}]] = [[${user}]];
+ [/]
+</script>
+```
+
+### 템플릿 조각
+```
+# 부분 포함
+
+## 부분 포함 insert
+<div th:insert="~{template/fragment/footer :: copy}"></div>
+## 부분 포함 replace
+<div th:replace="~{template/fragment/footer :: copy}"></div>
+## 부분 포함 단순 표현식
+<div th:replace="template/fragment/footer :: copy"></div>
+# 파라미터 사용
+<div th:replace="~{template/fragment/footer :: copyParam ('데이터1', '데이터2')}"></
+div>
+```
+
 
