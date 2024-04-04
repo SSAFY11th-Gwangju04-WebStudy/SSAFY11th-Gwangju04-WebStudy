@@ -15,8 +15,8 @@
 
 ## 입력 폼 처리
 
--  `th:object` : 커맨드 객체를 지정한다.  
--  `*{...}` : 선택 변수 식이라고 한다. `th:object` 에서 선택한 객체에 접근한다. 
+- `th:object` : 커맨드 객체를 지정한다.  
+- `*{...}` : 선택 변수 식이라고 한다. `th:object` 에서 선택한 객체에 접근한다. 
 - `th:field`
 	- HTML 태그의 `id` , `name` , `value` 속성을 자동으로 처리해준다.
 
@@ -25,15 +25,15 @@
 ```HTML
 <form action="item.html" th:action th:object="${item}" method="post">  
     <div>        
-	    <label for="itemName">상품명</label>  
+	<label for="itemName">상품명</label>  
         <input type="text" id="itemName"  th:field="*{itemName}" class="form-control" placeholder="이름을 입력하세요">  
     </div>    
     <div>        
-	    <label for="price">가격</label>  
+	<label for="price">가격</label>  
         <input type="text" id="price" th:field="*{price}" class="form-control" placeholder="가격을 입력하세요">  
     </div>    
-    <div>        <
-	    label for="quantity">수량</label>  
+    <div>
+	<label for="quantity">수량</label>  
         <input type="text" id="quantity" th:field="*{quantity}" class="form-control" placeholder="수량을 입력하세요">  
     </div>
 ```
