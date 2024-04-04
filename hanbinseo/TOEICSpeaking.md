@@ -9,3 +9,12 @@
 ![image](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/aa00fe95-0875-49fe-b20d-e2efc1b10de8)
 
 - part 2 지문 따라 읽기
+
+>https://www.youtube.com/watch?v=KOm-pm9CF5E&list=PL8-zrEeeBrpMkDiZwWvRY1kT4Nyt_XfGL&index=2
+>
+>### 토익스피킹 파트2 핵심 강의 [2023ver.] ㅣ초보 독학러도 영상 하나로 AL 완성
+
+- 사진 보고 묘사하기
+- 1인
+- 2인
+- 다수의 사람
