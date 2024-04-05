@@ -15,10 +15,20 @@
   - 리터럴
   - 연산
   - 속성 값 설정
-
 </details>
 <details>
   <summary>Section 1-2</summary>
+  >인증
+  >![image](https://github.com/hanbinseo/SSAFY11th-Gwangju04-WebStudy/assets/79882952/177aa2ba-7c8f-4c85-8c62-1f6454261411)
+
+  - 반복
+  - 조건부 평가 (if문)
+  - 주석
+  - 블록
+  - 자바스크립트 인라인
+  - 템플릿 조각
+  - 템플릿 레이아웃 1
+  - 템플릿 레이아웃 2
 </details>
 <details>
   <summary>Section 2</summary>
