@@ -4,6 +4,7 @@
 - Arrays.BinarySearch(), Collections.BinarySearch() 메서드를 지원한다
 - Lower and Upper Bound 가 있다
 
+
 ## Upper Bound
 
 - 범위 [begin, end) 안의 원소들 중, **특정 target보다 큰 첫번째 원소의 인덱스**를 리턴한다. 만약 그런 원소가 없다면 end 인덱스를 리턴한다.
@@ -30,6 +31,7 @@ private static int upperBound(List<Integer> data, int target) {
 }
 ```
 
+
 ## Lower Bound
 
 - 범위 [begin, end) 안의 원소들 중, 특정 target보다 크거나 같은 **첫번째 원소의 인덱스**를 리턴한다. 만약 그런 원소가 없다면 end 인덱스를 리턴
@@ -53,6 +55,7 @@ private static int lowerBound(List<Integer> data, int target) {
     return end;
 }
 ```
+
 
 ### Collection.binarySearch(List<T>, T key)
 
