@@ -1,9 +1,11 @@
 # LG인적성 검사
 ## 잡플랫 LG인성 검사 결과
-![image](https://github.com/NAINSOO/SSAFY11th-Gwangju04-WebStudy/assets/68545724/cbc48dee-cecf-4572-86ce-5a40ad3cfb80)
-![image](https://github.com/NAINSOO/SSAFY11th-Gwangju04-WebStudy/assets/68545724/30a5b24e-98ca-4cec-b28b-df26e99ce9ec)
-![image](https://github.com/NAINSOO/SSAFY11th-Gwangju04-WebStudy/assets/68545724/57d4810c-c320-497a-a89d-f89c63c96448)
-![image](https://github.com/NAINSOO/SSAFY11th-Gwangju04-WebStudy/assets/68545724/e5652695-43d8-463b-9829-b33e2e653297)
+### 1차
+![](https://github.com/NAINSOO/SSAFY11th-Gwangju04-WebStudy/assets/68545724/cbc48dee-cecf-4572-86ce-5a40ad3cfb80)
+![](https://github.com/NAINSOO/SSAFY11th-Gwangju04-WebStudy/assets/68545724/e3b36aa9-0186-45e7-aeef-0b58176b6533)
+### 2차
+![](https://github.com/NAINSOO/SSAFY11th-Gwangju04-WebStudy/assets/68545724/475c2429-f32e-4bfc-b719-cfa7b619eb48)
+![](https://github.com/NAINSOO/SSAFY11th-Gwangju04-WebStudy/assets/68545724/67ea3034-fec0-4c82-89ac-6205ea9db0be)
 
 ## 인성 검사 Tip 정리
 ### LG그룹 인재상 판단 방법
@@ -19,7 +21,7 @@
 부족과 위험권은 유동권으로, 합격할 수도 있고 불합격할 수도 있습니다. 단, 부족은 합격할 확률이 더 높고, 위험은 불합격할 확률이 더 높습니다.
 
 합격권(안정,가능,기대)이 나왔다면, 이번에 응시한 그 느낌 그대로 실전 때 응시하면 되고, 불합격권이 나왔다면 이번에 응시했던 것 보다는 조금 더 긍정적으로 마킹하는 것이 좋습니다.
-## 느낀점
+## 1차 인성 검사 느낀점
 LG의 인재상 keyword는 다음과 같다. 도전, 혁신, 팀웍, 창의, 꾸준함
 
 내가 찍은 것을 생각하면 팀웍에서는 낮은 점수를 받았더라도 적어도 도전, 혁신, 창의, 꾸준함에서 높은 점수를 받을 것이라고 생각했다.
@@ -27,3 +29,12 @@ LG의 인재상 keyword는 다음과 같다. 도전, 혁신, 팀웍, 창의, 꾸
 하지만 결과는 달랐던 것을 보면 조금 더 긍정적으로 체크했어야 했던것 같다. 0에서 7까지 점수 중에서 4, 5, 6이 가장 많았다. 보다 긍정적인 대답이 필요한 것 같다. 이를 토대로 다시한번 검사에 임해봐야 겠다.
 
 성격점수가 전반적으로 낮은 사람들은 자기 자신을 부정적으로 보고 있는 사람이라고 한다. 내 자신을 좀 더 긍정적으로 바라보고 자신을 사회성 높은 사람이라고 생각하고 인성검사에 임해야겠다.
+## 2차 인성 검사 느낀점
+### 2차 인성검사
+전보다 압도적으로 점수가 높게 나왔다.
+
+어느정도 솔직하게 한다고 했지만 응답 신뢰도가 위험할 정도로 낮게 나왔다.
+
+우선 타인과의 갈등이나 나에 대한 평가에서 7점을 지양해야 할 것 같다.
+
+인재상의 점수를 올려주는 문항과 사회적 바람직성의 점수를 올려주는 문항을 잘 구분하고 두 문항이 겹쳐있으면 최대한 점수를 조절해서 응시하자.
