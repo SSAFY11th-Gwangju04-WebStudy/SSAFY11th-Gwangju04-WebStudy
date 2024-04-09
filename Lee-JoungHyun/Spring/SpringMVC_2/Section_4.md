@@ -94,3 +94,5 @@ public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttr
 	- 중복 처리가 많음
 	- 타입 처리가 아직 안되있음 (400 예외) Item 객체를 못받음
 	- 결국 고객이 입력한 정보를 별도로 저장해야 함...
+d
+   
