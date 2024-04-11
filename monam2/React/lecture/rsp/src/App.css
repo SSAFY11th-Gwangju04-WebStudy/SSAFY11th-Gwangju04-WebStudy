@@ -36,3 +36,15 @@
   height: 50px;
   border-radius: 10px;
 }
+
+.Lose {
+  border: 2px solid red;
+}
+
+.Win {
+  border: 2px solid blue;
+}
+
+.tie {
+  border: 2px solid black;
+}

@@ -1,12 +1,18 @@
-import React from "react";
+const Box = ({title, item, result}) => {
+  let comRes;
+  if (title === "computer" && result == "Win") {
+    comRes = "Lose";
+  } else if (title === "computer" && result == "Lose") {
+    comRes = "Win";
+  } else {
+    comRes = result;
+  }
 
-const Box = (props) => {
-  console.log(props.item);
   return (
-    <div className="box">
-      <h1>{props.title}</h1>
-      <img className="item-img" src={require(props.item.img)} alt="" />
-      <h2>Win</h2>
+    <div className={`box ${comRes}`}>
+      <h1>{title}</h1>
+      <img className="item-img" src={item && item.img} alt="" />
+      <h2>{comRes}</h2>
     </div>
   );
 };
