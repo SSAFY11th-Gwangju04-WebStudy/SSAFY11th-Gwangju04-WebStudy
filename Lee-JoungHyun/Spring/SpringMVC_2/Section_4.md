@@ -3,6 +3,7 @@
 
 ## 검증 요구사항
 
+
 **요구사항: 검증 로직 추가** 
 
 - 타입 검증
@@ -27,6 +28,7 @@
 
 
 ## 검증 직접 처리
+
 
 ![[스크린샷 2024-04-09 오전 1.20.59.png]]
 
@@ -94,5 +96,64 @@ public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttr
 	- 중복 처리가 많음
 	- 타입 처리가 아직 안되있음 (400 예외) Item 객체를 못받음
 	- 결국 고객이 입력한 정보를 별도로 저장해야 함...
-d
-   
+
+
+## BindingResult1
+
+
+- BindingResult 위치는 @ModelAttribute 바로 뒤!
+- 필드오류
+```Java
+if (!StringUtils.hasText(item.getItemName())) {  
+    bindingResult.addError(new FieldError("item", "itemName", "상품 이름은 필수입니다."));  
+}
+```
+- 글로벌 오류
+```java
+if (result < 10000) {  
+    bindingResult.addError(new ObjectError("item", "가격 * 수량은 10,000원 이상이어야 합니다, 현재 값: " + result));  
+}
+```
+
+- Thymeleaf 에서 받기
+```HTML
+<div th:if="${#fields.hasGlobalErrors()}">  
+    <p class="field-error" th:each="err: ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>  
+</div>
+
+<div>  
+    <label for="itemName" th:text="#{label.item.itemName}">상품명</label>  
+    <input type="text" id="itemName" th:field="*{itemName}"  
+           th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">  
+           
+</div>  
+<div class="field-error" th:errors="*{itemName}">  
+    상품명 오류  
+</div>
+
+```
+
+
+## BindingResult2
+
+
+- **예) @ModelAttribute에 바인딩 시 타입 오류가 발생하면?**
+	- `BindingResult` 가 없으면 400 오류가 발생하면서 컨트롤러가 호출되지 않고, 오류 페이지로 이동한다. 
+	- `BindingResult` 가 있으면 오류 정보( `FieldError` )를 `BindingResult` 에 담아서 컨트롤러를 정상 호출한다.
+
+따라서 직접 처리하지 않으면 이상한 오류정보가 출력된다!
+
+- BindingResult 작동방법 3가지
+	1. `@ModelAttribute` 의 객체에 타입 오류 등으로 바인딩이 실패하는 경우 스프링이 `FieldError` 생성해서 `BindingResult` 에 넣어준다.
+	2. 개발자가 직접 넣어준다.  
+	3. `Validator` 사용 이것은 뒤에서 설명
+
+
+## FieldError, ObjectError
+
+
+- FieldError 의 2가지 생성자
+	- `public FieldError(String objectName, String field, String defaultMessage);`
+	 - `public FieldError(String objectName, String field, @Nullable Object rejectedValue, boolean bindingFailure, @Nullable String[] codes, @Nullable Object[] arguments, @Nullable String defaultMessage)`
+
++ Tymeleaf 에서는 그냥 `th:field` 가 처리해준다!
