@@ -30,4 +30,4 @@ jobs:
           git config --global user.name "hellomatia"
           git add -A
           git commit -m "Update study log" -a || echo "No changes to commit"
-          git push
+          git push --set-upstream origin HEAD:main -f
