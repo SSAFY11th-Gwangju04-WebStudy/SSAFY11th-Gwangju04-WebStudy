@@ -25,6 +25,8 @@ jobs:
         run: python scripts/generate_study_log.py
       
       - name: Commit and Push
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: |
           git config --global user.email "shuaigejp80@gmail.com"
           git config --global user.name "hellomatia"
