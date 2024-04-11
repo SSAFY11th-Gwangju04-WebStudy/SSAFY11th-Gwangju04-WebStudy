@@ -32,4 +32,6 @@ jobs:
           git config --global user.name "hellomatia"
           git add -A
           git commit -m "Update study log" -a || echo "No changes to commit"
+          # HTTPS URL에 PAT를 포함시켜 git push 명령어 수정
+          git remote set-url origin https://hellomatia:${{ secrets.TOKEN_GITHUB }}@github.com/SSAFY11th-Gwangju04-WebStudy/SSAFY11th-Gwangju04-WebStudy.git
           git push --set-upstream origin HEAD:main -f
