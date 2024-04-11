@@ -14,7 +14,7 @@ def generate_study_log():
     md_file_path = f"studyLog/{today}_study_log.md"
     os.makedirs(os.path.dirname(md_file_path), exist_ok=True)
     
-    with open(md_file_path, "w") as md_file:
+    with open(md_file_path, "a") as md_file:
         md_file.write(f"# {today} Study Log\n\n")
         
         # 최근 커밋들 가져오기
