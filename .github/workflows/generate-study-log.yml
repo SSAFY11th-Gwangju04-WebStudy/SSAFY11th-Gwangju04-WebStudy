@@ -3,6 +3,9 @@ name: Generate Study Log
 on:
   push:
 
+permissions:
+  contents: write
+
 jobs:
   generate-study-log:
     runs-on: ubuntu-latest
