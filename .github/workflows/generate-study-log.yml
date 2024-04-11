@@ -1,0 +1,25 @@
+name: Generate Study Log
+
+on:
+  push:
+
+jobs:
+  generate-study-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Install Dependencies
+        run: |
+          pip install PyGithub
+      
+      - name: Generate Study Log
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        run: python scripts/generate_study_log.py
