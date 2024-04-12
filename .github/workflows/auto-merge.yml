@@ -1,37 +1,53 @@
 name: Auto Merge
 
 on:
-  schedule:
-    - cron: '25 00 * * *'
+  push
+  # schedule:
+    # - cron: '25 00 * * *'
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Check PR Title
-        id: check-title
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-        run: |
-          PR_TITLE=$(curl -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/pulls?state=open" \
-            | jq -r '.[0].title')
-          echo "PR Title: $PR_TITLE"
-          # 예: 'Feature / 210403 / New feature'
-          if [[ "$PR_TITLE" =~ ^[^\ ]+\ /[0-9]{6}/ ]]; then
-            echo "::set-output name=valid::true"
-          else
-            echo "::set-output name=valid::false"
+    - name: Checkout
+      uses: actions/checkout@v3
+  
+    - name: Check PR Titles
+      id: check-titles
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+      run: |
+        # 어제 날짜를 yymmdd 형식으로 설정
+        YESTERDAY=$(date -d "yesterday" +%y%m%d)
+        echo "Yesterday's Date: $YESTERDAY"
+  
+        # 모든 오픈 PR의 제목을 가져옴
+        PR_TITLES=$(curl -H "Authorization: token $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${{ github.repository }}/pulls?state=open" \
+          | jq -r '.[].title')
+        
+        # 각 PR 제목을 검사
+        VALID=false
+        for TITLE in $PR_TITLES; do
+          echo "Checking PR Title: $TITLE"
+          if [[ "$TITLE" =~ ^[^\ ]+\ /$YESTERDAY/ ]]; then
+            VALID=true
+            break
           fi
-      
-      - name: Auto Merge PRs
-        if: steps.check-title.outputs.valid == 'true'
-        uses: pascalgn/automerge-action@v0.14.3
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-          MERGE_LABELS: "" # 자동 머지할 PR에 특정 라벨이 필요한 경우 여기에 지정
-          MERGE_METHOD: "merge"
-          MERGE_COMMIT_MESSAGE: "pull-request-title" # PR 제목을 커밋 메시지로 사용
+        done
+        
+        if [[ "$VALID" == "true" ]]; then
+          echo "::set-output name=valid::true"
+        else
+          echo "::set-output name=valid::false"
+        fi
+  
+    - name: Auto Merge PRs
+      if: steps.check-titles.outputs.valid == 'true'
+      uses: pascalgn/automerge-action@v0.14.3
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        MERGE_LABELS: ""
+        MERGE_METHOD: "merge"
+        MERGE_COMMIT_MESSAGE: "pull-request-title"
+  
