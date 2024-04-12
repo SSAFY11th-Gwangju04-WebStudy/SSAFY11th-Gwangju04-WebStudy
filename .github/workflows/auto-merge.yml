@@ -1,7 +1,6 @@
 name: Auto Merge
 
 on:
-  push:
   schedule:
     - cron: '25 00 * * *'
     
