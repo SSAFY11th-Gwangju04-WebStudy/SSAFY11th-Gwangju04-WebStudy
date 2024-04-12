@@ -28,13 +28,13 @@ jobs:
           
           for PR in $PRS; do
             echo "Adding auto-merge label to PR #$PR"
-            gh pr edit $PR --add-label "auto-merge"
+            gh pr edit $PR --add-label "automerge"
           done
       
       - name: Auto Merge PRs
         uses: pascalgn/automerge-action@v0.14.3
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-          MERGE_LABELS: "auto-merge" # 자동 머지할 PR에 "auto-merge" 라벨이 필요
+          MERGE_LABELS: "automerge" # 자동 머지할 PR에 "automerge" 라벨이 필요
           MERGE_METHOD: "merge"
           MERGE_COMMIT_MESSAGE: "pull-request-title" # PR 제목을 커밋 메시지로 사용
