@@ -1,45 +1,35 @@
 name: Auto Merge
 
 on:
-  push
-  # schedule:
-    # - cron: '25 00 * * *'
+  push:
+  schedule:
+    - cron: '25 00 * * *'
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Install GitHub CLI
-      run: |
-        sudo apt update
-        sudo apt install -y gh
-
-    - name: Merge Valid PRs
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        YESTERDAY=$(date -d "yesterday" +%y%m%d)
-        echo "Yesterday's Date: $YESTERDAY"
+      - name: Checkout
+        uses: actions/checkout@v2
       
-        # 모든 오픈 PR의 번호와 제목을 가져옴
-        echo "Fetching open PRs..."
-        PRS=$(gh pr list --state open --json number,title --jq ".[] | select(.title | test(\".+/ $YESTERDAY /.+\")) | .number")
-        
-        if [[ -z "$PRS" ]]; then
-          echo "No PRs matching the criteria were found."
-        else
-          echo "PRs found, attempting to merge..."
+      - name: Label PRs for Auto Merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          YESTERDAY=$(date -d "yesterday" +%y%m%d)
+          echo "Yesterday's Date: $YESTERDAY"
+          
+          PRS=$(gh pr list --state open --json number,title --jq ".[] | select(.title | test(\".+/ $YESTERDAY /.+\")) | .number")
+          
           for PR in $PRS; do
-            echo "Attempting to merge PR #$PR"
-            MERGE_OUTPUT=$(gh pr merge $PR --merge --auto --admin 2>&1)
-            MERGE_STATUS=$?
-            if [ $MERGE_STATUS -eq 0 ]; then
-              echo "Successfully merged PR #$PR"
-            else
-              echo "Failed to merge PR #$PR. Error: $MERGE_OUTPUT"
-            fi
+            echo "Adding auto-merge label to PR #$PR"
+            gh pr edit $PR --add-label "auto-merge"
           done
-        fi
+      
+      - name: Auto Merge PRs
+        uses: pascalgn/automerge-action@v0.14.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_LABELS: "auto-merge" # 자동 머지할 PR에 "auto-merge" 라벨이 필요
+          MERGE_METHOD: "merge"
+          MERGE_COMMIT_MESSAGE: "pull-request-title" # PR 제목을 커밋 메시지로 사용
