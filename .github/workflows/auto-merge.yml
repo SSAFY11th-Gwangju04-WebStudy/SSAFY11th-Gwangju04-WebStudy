@@ -11,43 +11,30 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-  
-    - name: Check PR Titles
-      id: check-titles
+
+    - name: Install GitHub CLI
+      run: |
+        sudo apt update
+        sudo apt install -y gh
+
+    - name: Login GitHub CLI
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
       run: |
-        # 어제 날짜를 yymmdd 형식으로 설정
-        YESTERDAY=$(date -d "yesterday" +%y%m%d)
-        echo "Yesterday's Date: $YESTERDAY"
-      
-        # 모든 오픈 PR의 제목을 가져옴
-        PR_TITLES=$(curl -H "Authorization: token $GITHUB_TOKEN" \
-          "https://api.github.com/repos/${{ github.repository }}/pulls?state=open" \
-          | jq -r '.[].title')
-        
-        # 각 PR 제목을 검사
-        VALID=false
-        while IFS= read -r TITLE; do
-          echo "Checking PR Title: $TITLE"
-          if [[ $TITLE =~ .+/$YESTERDAY/.+ ]]; then
-            VALID=true
-            break
-          fi
-        done <<< "$PR_TITLES"
-        
-        if [[ "$VALID" == "true" ]]; then
-          echo "::set-output name=valid::true"
-        else
-          echo "::set-output name=valid::false"
-        fi
-  
-    - name: Auto Merge PRs
-      if: steps.check-titles.outputs.valid == 'true'
-      uses: pascalgn/automerge-action@v0.14.3
+        echo "${GITHUB_TOKEN}" | gh auth login --with-token
+
+    - name: Merge Valid PRs
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-        MERGE_LABELS: ""
-        MERGE_METHOD: "merge"
-        MERGE_COMMIT_MESSAGE: "pull-request-title"
-  
+      run: |
+        YESTERDAY=$(date -d "yesterday" +%y%m%d)
+        echo "Yesterday's Date: $YESTERDAY"
+
+        # 모든 오픈 PR의 번호와 제목을 가져옴
+        PRS=$(gh pr list --state open --json number,title --jq '.[] | select(.title | test(".+/$YESTERDAY/.+")) | .number')
+        
+        # 각 PR에 대해 머지 시도
+        for PR in $PRS; do
+          echo "Merging PR #$PR"
+          gh pr merge $PR --merge --auto --admin
+        done
