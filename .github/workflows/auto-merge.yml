@@ -20,7 +20,7 @@ jobs:
         # 어제 날짜를 yymmdd 형식으로 설정
         YESTERDAY=$(date -d "yesterday" +%y%m%d)
         echo "Yesterday's Date: $YESTERDAY"
-  
+      
         # 모든 오픈 PR의 제목을 가져옴
         PR_TITLES=$(curl -H "Authorization: token $GITHUB_TOKEN" \
           "https://api.github.com/repos/${{ github.repository }}/pulls?state=open" \
@@ -28,13 +28,13 @@ jobs:
         
         # 각 PR 제목을 검사
         VALID=false
-        for TITLE in $PR_TITLES; do
+        while IFS= read -r TITLE; do
           echo "Checking PR Title: $TITLE"
-          if [[ "$TITLE" =~ ^[^\ ]+\ /$YESTERDAY/ ]]; then
+          if [[ $TITLE =~ .+/$YESTERDAY/.+ ]]; then
             VALID=true
             break
           fi
-        done
+        done <<< "$PR_TITLES"
         
         if [[ "$VALID" == "true" ]]; then
           echo "::set-output name=valid::true"
