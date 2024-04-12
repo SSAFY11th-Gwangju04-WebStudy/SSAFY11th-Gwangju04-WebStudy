@@ -37,6 +37,7 @@
 
 ## 검증 직접 처리 - 개발
 
+
 - 검증에서 오류 메세지가 하나라도 있으면 오류 메시지를 출력하기 위해 `model` 에 `errors` 를 담고, 입력 폼이 있는 뷰 템플릿(현재) 로 다시 보낸다!
 
 ```java
@@ -155,5 +156,153 @@ if (result < 10000) {
 - FieldError 의 2가지 생성자
 	- `public FieldError(String objectName, String field, String defaultMessage);`
 	 - `public FieldError(String objectName, String field, @Nullable Object rejectedValue, boolean bindingFailure, @Nullable String[] codes, @Nullable Object[] arguments, @Nullable String defaultMessage)`
+		 - 파라미터 목록  
+			- `objectName` : 오류가 발생한 객체 이름  
+			- `field` : 오류 필드  
+			- `rejectedValue` : 사용자가 입력한 값(거절된 값)  
+			- `bindingFailure` : 타입 오류 같은 바인딩 실패인지, 검증 실패인지 구분 값 `codes` : 메시지 코드  
+			- `arguments` : 메시지에서 사용하는 인자  
+			- `defaultMessage` : 기본 오류 메시지
 
 + Tymeleaf 에서는 그냥 `th:field` 가 처리해준다!
+
+
+## 오류 코드와 메세지 처리 1
+
+앞 2번째 생성자의 codes, arguments 를 
+
+-> errors.properties 로 처리
+전에 messages 를 스프링이 인식했던 이유가`spring.messages.basename=messages`  디폴트이기 때문, 따라서 errors.properties 를 사용하려면 이것도 여기에 등록시킨다
+`spring.messages.basename=messages, errors`
+
+```java
+bindingResult.addError(new FieldError("item", "price", item.getPrice(), false, new String[]{"range.item.price"}, new Object[]{1_000, 1_00_000}, null));
+
+bindingResult.addError(new ObjectError("item", new String[]{"totalPriceMin"}, new Object[]{10000, result}, null));
+```
+
+처음엔 등록된 properties 에서 String[] 배열의 값을 순서대로 찾음,
+- 찾으면 다음 Object 배열에서 값 넣기
+- 없으면 default value 처리 
+
+
+## 오류 코드와 메세지 처리2
+
+BindingResult 는 검증해야 할 객체인 target 바로 다음에 오므로 이미 알고있음
+```java
+bindingResult.rejectValue("price", "range", new Object[]{1_000, 1_000_000}, null);
+
+bindingResult.reject("totalPriceMin", new Object[]{1000, result}, null);
+```
+
+이렇게 줄일 수 있음 + 규칙이 있음
+rejectValue 는 결국 Field Error 를 생성해서 넣어주긴 함
+```java
+ void rejectValue(@Nullable String field, String errorCode,
+         @Nullable Object[] errorArgs, @Nullable String defaultMessage);
+```
+
+*여기서 errorCode 는 messageResolver 를 위한 오류 코드*
+errorArgs 는 치환 값
+
+
+## 오류코드와 메세지 처리 3
+
+- 오류코드 만드는 법
+	1. 단순하게 - 범용성이 있음
+	2. 세밀하게 
+좋은 방법은 범용성으로 사용하다 세밀하게 작성해야 하는 경우 단계를 두는 것!
+
+객체명 + 필드명 을 조합한 메시지가 있는지 먼저 확인한 후 없으면 좀더 범용적인 메시지 선택하게 함 `MessageCodeResolver` 가
+
+
+## 오류 코드와 메시지 처리 4
+
+```Java
+String[] messageCodes = codesResolver.resolveMessageCodes("required", "item");  
+for (String messageCode : messageCodes) {  
+    System.out.println("messageCode = " + messageCode);  
+}
+```
+
+```
+messageCode = required.item // 우선순위 더 높음!
+messageCode = required
+// = new String[]{"required.item", "required"} 와 같은 역할
+```
+
+- 객체 오류
+```
+객체 오류의 경우 다음 순서로 2가지 생성 
+
+1.: code + "." + object name 
+2.: code
+
+예) 오류 코드: required, object name: item
+
+1.: required.item
+2.: required
+
+```
+
+- 필드 오류
+```
+필드 오류의 경우 다음 순서로 4가지 메시지 코드 생성 
+
+1.: code + "." + object name + "." + field 
+2.: code + "." + field  
+3.: code + "." + field type  
+4.: code
+
+예) 오류 코드: typeMismatch, object name "user", field "age", field type: int 
+
+1. "typeMismatch.user.age"  
+2. "typeMismatch.age"  
+3. "typeMismatch.int"
+```
+
+
+## 오류 코드와 메시지 처리 5
+
+
+### 오류 처리 관리 전략!
+
+**핵심은 구체적인것에서! 덜 구체적인 것으로!!**
+
+**정리**  
+1. `rejectValue()` 호출
+2. `MessageCodesResolver` 를 사용해서 검증 오류 코드로 메시지 코드들을 생성
+3. `new FieldError()` 를 생성하면서 메시지 코드들을 보관
+4. `th:erros` 에서 메시지 코드들로 메시지를 순서대로 메시지에서 찾고, 노출
+
+## 오류 코드와 메세지 처리 6
+
+**스프링이 직접 만든 오류 메시지 처리**
+
+- 오류는 2가지
+	1. 개발자가 직접 설정한 오류 코드 `rejectValue()` 를 직접 호출 
+	2. 스프링이 직접 검증 오류에 추가한 경우(주로 타입 정보가 맞지 않음)
+
+
+## Validator 분리 1
+
+복잡한 검증 코드를 별도의 class 로 처리!
+ItemValidator 를 스프링 빈으로 주입받아 직접 호출함
+
+
+## Validator 분리 2
+
+```Java
+@InitBinder  
+public void init(WebDataBinder dataBinder) {  
+    dataBinder.addValidators(itemValidator);  
+}
+// + (@Validated) 어노테이션 추가로 사용!
+
+public String addItemV6(@Validated @ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) { ~ }
+```
+
+@Valiated 적용시 해당 객체에 대해 검증기가 작동하며 BindingResult에 등록
+검증기가 여러개일 경우는 supports(Item.class) 가 호출되어 매핑
+
+여러 컨트롤러에 매핑시키려면(글로벌 설정) Main 에 설정함 ㅇㅇ 근데 잘 안쓰임
