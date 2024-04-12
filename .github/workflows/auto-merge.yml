@@ -19,7 +19,7 @@ jobs:
       
       - name: Label PRs for Auto Merge
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: |
           YESTERDAY=$(date -d "yesterday" +%y%m%d)
           echo "Yesterday's Date: $YESTERDAY"
@@ -34,7 +34,7 @@ jobs:
       - name: Auto Merge PRs
         uses: pascalgn/automerge-action@v0.14.3
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
           MERGE_LABELS: "auto-merge" # 자동 머지할 PR에 "auto-merge" 라벨이 필요
           MERGE_METHOD: "merge"
           MERGE_COMMIT_MESSAGE: "pull-request-title" # PR 제목을 커밋 메시지로 사용
