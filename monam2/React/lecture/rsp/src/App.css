@@ -1,0 +1,50 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-box {
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  border: 1px solid black;
+  width: 300px; /* 수정: 너비를 300px로 변경 */
+}
+
+.item-img {
+  width: 100%; /* 필요에 따라 조정 */
+}
+
+.btns {
+  margin: auto;
+  display: flex;
+  width: 400px;
+  justify-content: center;
+}
+
+.btns button {
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.Lose {
+  border: 2px solid red;
+}
+
+.Win {
+  border: 2px solid blue;
+}
+
+.tie {
+  border: 2px solid black;
+}
