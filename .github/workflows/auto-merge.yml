@@ -38,6 +38,6 @@ jobs:
         uses: pascalgn/automerge-action@v0.16.3
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-          MERGE_LABELS: "automerge" # 자동 머지할 PR에 "automerge" 라벨이 필요
+          MERGE_LABELS: "" # 자동 머지할 PR에 "automerge" 라벨이 필요
           MERGE_METHOD: "merge"
           MERGE_COMMIT_MESSAGE: "pull-request-title" # PR 제목을 커밋 메시지로 사용
