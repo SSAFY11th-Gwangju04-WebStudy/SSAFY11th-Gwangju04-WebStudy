@@ -25,9 +25,7 @@
 
 ## JDBC 블록 다이어그램
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/1b9fd3c9-47c7-4906-80a4-dec37c850d65/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/ef68aafe-2f87-4845-93d3-97b3bc04328d/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/DataBase/imgs/jdbc3.png)
 
 - JDBC가 없다면 직접 만들어야 함
 - driver loading은 생성자에서 1번 시도
@@ -80,7 +78,7 @@
 
 ## JDBC 개발 순서
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/24eb8b7a-8028-4196-ae72-e44352e149b6/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/DataBase/imgs/jdbc1.png)
 
 > JDBC Driver Loading
 > 
@@ -97,7 +95,7 @@
 - Connection conn = DriverManager.getConnection(URL.dbid,dbpassword);
 - 각 DB별 URL
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/041461a2-abd2-49aa-a043-93efcea2d3c1/Untitled.png)
+    ![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/DataBase/imgs/jdbc2.png)
     
 
 > SQL 실행 준비(Statement, PreparedStatement 생성)
