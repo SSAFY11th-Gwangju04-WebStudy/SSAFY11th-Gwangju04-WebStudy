@@ -1,29 +1,65 @@
-import { useEffect } from "react"
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import WeatherBox from "./component/WeatherBox";
+import "bootstrap/dist/css/bootstrap.min.css";
+import WeatherButton from "./component/WeatherButton";
 
 function App() {
+  const [weather, setWeather]=useState(null);
+  const [city, setCity] = useState("");
 
-  const getCurrentLocation=()=>{
-    navigator.geolocation.getCurrentPosition((position)=>{
+  const cities = ['광주', 'paris', 'newYork', 'LA', 'tokyo'];
+
+  const getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
       let lat = position.coords.latitude;
       let lon = position.coords.longitude;
-      console.log(lat, lon);
+      getWeatherByCurrentLocation(lat, lon);
+    });
+  };
+
+  const getWeatherByCurrentLocation = async (lat, lon) => {
+    const apikey = "0a68abff2211f8d90cfbfb4c9a4936eb";
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`;
+    // let response = await fetch(url)
+    // let data = await response.json();
+    // console.log("Data : ", data);
+    await fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setWeather(data);
+      });
+  };
+
+  const getWeatherByCity= async ()=>{
+    const apikey = "0a68abff2211f8d90cfbfb4c9a4936eb";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
+    await fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      setWeather(data);
     });
   }
 
-  useEffect(()=>{
-    getCurrentLocation();
-  },[]);
+  useEffect(() => {
+    city==="" ? getCurrentLocation() : getWeatherByCity();
+  }, [city]);
 
   return (
     <>
-      
+      <div className="container">
+        <WeatherBox weather={weather}/>
+        <WeatherButton cities={cities} setCity={setCity}/>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
-
+export default App;
 
 /*
 1. 앱이 실행되자 마자 현재 위치 기반의 날씨가 보인다.
