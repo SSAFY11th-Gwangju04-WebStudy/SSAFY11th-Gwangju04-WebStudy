@@ -1,29 +1,97 @@
-import { useEffect } from "react"
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import WeatherBox from "./component/WeatherBox";
+import "bootstrap/dist/css/bootstrap.min.css";
+import WeatherButton from "./component/WeatherButton";
+import ClipLoader from "react-spinners/ClipLoader";
+import appkey from "./secret";
 
 function App() {
+  const [weather, setWeather] = useState(null);
+  const [city, setCity] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const getCurrentLocation=()=>{
-    navigator.geolocation.getCurrentPosition((position)=>{
+  const cities = ["paris", "new York", "seoul", "tokyo"];
+
+  const getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
       let lat = position.coords.latitude;
       let lon = position.coords.longitude;
-      console.log(lat, lon);
+      getWeatherByCurrentLocation(lat, lon);
     });
+  };
+
+  const getWeatherByCurrentLocation = async (lat, lon) => {
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appkey}&units=metric`;
+    // let response = await fetch(url)
+    // let data = await response.json();
+    // console.log("Data : ", data);
+    await fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setWeather(data);
+      }).catch(
+        console.log("현재 위치 데이터를 불러오지 못했습니다.")
+      );
+  };
+
+  const getWeatherByCity = async () => {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appkey}&units=metric`;
+    setLoading(true);
+    await fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setWeather(data);
+      }).catch(
+        console.log("버튼 위치 데이터를 불러오지 못했습니다.")
+      );
+    setLoading(false);
+  };
+
+  const handleCityChange=(city)=>{
+    if (city==="current"){
+      setCity("");
+      return;
+    }
+
+    setCity(city);
   }
 
-  useEffect(()=>{
-    getCurrentLocation();
-  },[]);
+  useEffect(() => {
+    city === "" ? getCurrentLocation() : getWeatherByCity();
+  }, [city]);
 
   return (
     <>
-      
+      {loading ? (
+        <div className="container">
+        <ClipLoader
+          color="#000000"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+        </div>
+      ) : (
+        <div className="container">
+          <WeatherBox weather={weather} />
+          <WeatherButton
+            cities={cities}
+            selectedCity={city}
+            handleCityChange={handleCityChange}
+          />
+        </div>
+      )}
     </>
-  )
+  );
 }
 
-export default App
-
+export default App;
 
 /*
 1. 앱이 실행되자 마자 현재 위치 기반의 날씨가 보인다.
