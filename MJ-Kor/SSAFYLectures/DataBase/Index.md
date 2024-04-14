@@ -11,7 +11,10 @@
 
 > Index의 문제점
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/be340e09-c105-40c1-b812-0baf6d44e1ab/Untitled.png)
+- 불필요한 인덱스를 만들면 DB가 차지하는 공간만 늘어나고 전체 테이블을 찾는 것보다 느려짐
+- DB의 공간을 차지하므로 추가적인 공간 필요
+- 처음 index를 생성하는데 많은 시간 소요
+- 데이터 변경 작업이 자주 일어나는 경우 오히려 성능 저하가 일어날 수 있다.
 
 > Index의 종류 - 클러스터형 인덱스
 
