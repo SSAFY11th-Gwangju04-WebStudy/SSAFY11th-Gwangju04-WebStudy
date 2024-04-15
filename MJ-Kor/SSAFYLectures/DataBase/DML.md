@@ -2,7 +2,7 @@
 
 > SELECT, FROM
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/7de4f3d5-e6da-491b-b992-85a0241aa6bd/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/DataBase/imgs/dml1.png)
 
 - all: 모든 데이터
 - distinct: 중복 데이터는 하나만 출력
@@ -20,7 +20,7 @@
 
 > WHERE
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/90dac09f-cb1f-432e-aece-ee2c971f78d8/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/DataBase/imgs/dml2.png)
 
 - and, or, not
     - 일반적인 조건식 연산자
@@ -36,7 +36,7 @@
     - %은 모든 문자를 의미, _는 한글자를 의미한다.
 - NULL의 논리연산
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/6a20bdce-8c18-4502-9bff-216aa4000ace/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/DataBase/imgs/dml3.png)
 
 > ORDER BY
 
