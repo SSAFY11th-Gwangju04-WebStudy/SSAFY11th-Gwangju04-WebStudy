@@ -349,31 +349,39 @@ public interface OrderRepositoryCustom {
 ### OrderRepositoryCustomImpl
 
 ```java
-package com.github.prgrms.orders;
+package com.github.prgrms.repository;
+
+import static com.github.prgrms.entity.QOrder.order;
+import static com.github.prgrms.entity.QReview.review;
 
 import com.github.prgrms.configures.web.Pageable;
 import com.github.prgrms.entity.Order;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
-import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class OrderRepositoryCustomImpl implements OrderRepositoryCustom {
 
-    private final EntityManager em;
+    private final JPAQueryFactory jpaQueryFactory;
 
     @Override
     public List<Order> findAll(Pageable pageable) {
-        return em.createQuery("select o from Order o left join fetch o.review r order by o.seq desc", Order.class)
-                .setFirstResult((int) pageable.getOffset())
-                .setMaxResults(pageable.getSize())
-                .getResultList();
+        return jpaQueryFactory.select(order)
+                .from(order)
+                .leftJoin(order.review, review)
+                .fetchJoin()
+                .orderBy(order.seq.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getSize())
+                .fetch();
     }
 }
 
 ```
 
 - fetch join을 활용하여 N + 1문제 해결
+- Querydsl 적용
 
 ### ProductRepository
 
