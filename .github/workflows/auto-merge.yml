@@ -2,7 +2,7 @@ name: Auto Merge
 
 on:
   schedule:
-    - cron: '25 00 * * *'
+    - cron: '00 00 * * *'  # 매일 자정 25분에 실행
     
 permissions:
   contents: write
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # 코드 체크아웃
       
       - name: Label PRs for Auto Merge
         env:
@@ -23,8 +23,10 @@ jobs:
           YESTERDAY=$(date -d "yesterday" +%y%m%d)
           echo "Yesterday's Date: $YESTERDAY"
           
+          # 전날 날짜를 포함하는 제목을 가진 오픈된 PR 목록을 조회
           PRS=$(gh pr list --state open --json number,title --jq ".[] | select(.title | test(\".+/ $YESTERDAY /.+\")) | .number")
           
+          # 해당 PR에 'automerge' 라벨 추가
           for PR in $PRS; do
             echo "Adding auto-merge label to PR #$PR"
             gh pr edit $PR --add-label "automerge"
@@ -34,9 +36,9 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Auto Merge PRs
-        uses: pascalgn/automerge-action@v0.16.3
+        uses: pascalgn/automerge-action@v0.16.3  # 자동 병합 액션 사용
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-          MERGE_LABELS: "" # 자동 머지할 PR에 "automerge" 라벨이 필요
+          MERGE_LABELS: "automerge"
           MERGE_METHOD: "merge"
-          MERGE_COMMIT_MESSAGE: "pull-request-title" # PR 제목을 커밋 메시지로 사용
+          MERGE_COMMIT_MESSAGE: "pull-request-title"  # PR 제목을 커밋 메시지로 사용
