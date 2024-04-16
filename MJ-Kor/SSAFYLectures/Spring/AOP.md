@@ -35,7 +35,7 @@
 - 핵심 관심 사항 : BankingService, AccountService, CustomerService
 - 공통 관심 사항 : Security, Transaction, Other …
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/5ede2406-d79b-4b87-856a-b330c8524553/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/aop1.png)
 
 - AOP를 적용하면 새로 만들어진 객체에 공통 관심 사항이 알아서 적용된다. (이런 느낌)
 
@@ -74,7 +74,7 @@
 
 > Pointcut 표현식
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/a68ca066-05d9-45a1-9641-c6808ce99651/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/aop2.png)
 
 - execution(public * *(..))
     - 첫번째 * 위치 - return type
@@ -86,7 +86,7 @@
 
 > AOP 비교
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/f2382a8e-2147-468f-85a6-850d883f46b8/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/aop3.png)
 
 - 
 
@@ -97,14 +97,14 @@
     - Target을 감싸는 Proxy는 실행시간(Runtime)에 생성
     - Proxy는 Advice를 Target 객체에 적용하면서 생성되는 객체
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/d606637c-2820-47ca-b18b-f4fd466efc0c/Untitled.png)
+    ![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/aop4.png)
     
 
 - Proxy가 호출을 가로챈다
     - Proxy는 Target 객체에 대한 호출을 가로챈 다음 Advice의 부가기능 로직을 수행하고 난 후에 Target의 핵심 기능 로직을 호출한다. (전처리 Advice)
     - 또는 Target의 핵심 기능 로직 method를 호출한 후에 부가기능(Advice)를 수행하는 경우도 있다. (후처리 Advice)
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/0e1f41a3-22b5-4e99-b38e-0071b969c8ba/Untitled.png)
+    ![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/aop5.png)
     
 
 - Spring AOP는 method JoinPoint만 지원
