@@ -11,22 +11,19 @@ g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)
 
 def label_and_merge_prs():
-    # 전날 날짜 계산
     yesterday = (datetime.now() - timedelta(1)).strftime('%y%m%d')
-
-    # 전날 날짜를 포함하는 제목을 가진 오픈된 PRs 검색
     open_prs = repo.get_pulls(state='open')
     for pr in open_prs:
         if yesterday in pr.title:
-            # 'automerge' 라벨 추가
             pr.add_to_labels('automerge')
             print(f"Added automerge label to PR #{pr.number}")
-
-            # PR 병합 조건 검사 및 병합 실행
             if 'automerge' in [label.name for label in pr.labels]:
-                if pr.mergeable:  # 병합 가능한 상태인지 확인
+                if pr.mergeable:
                     pr.merge(merge_method='merge', commit_title=pr.title)
                     print(f"Merged PR #{pr.number} successfully")
+                else:
+                    print(f"PR #{pr.number} is not mergeable due to conflicts or repo rules.")
+
 
 if __name__ == '__main__':
     label_and_merge_prs()
