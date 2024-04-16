@@ -27,4 +27,4 @@ jobs:
       - name: Execute Auto Merge Script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python auto_merge.py
+        run: python scripts/auto_merge.py
