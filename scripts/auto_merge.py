@@ -4,7 +4,7 @@ from github import Github
 
 # GitHub 인증을 위한 토큰 설정
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
-REPO_NAME = 'your-repository-name'  # 깃허브 레포지토리 이름 설정
+REPO_NAME = 'SSAFY11th-Gwangju04-WebStudy/SSAFY11th-Gwangju04-WebStudy'
 
 # GitHub 객체 초기화
 g = Github(GITHUB_TOKEN)
