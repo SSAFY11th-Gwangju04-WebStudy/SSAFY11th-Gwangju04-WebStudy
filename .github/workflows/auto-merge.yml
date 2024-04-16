@@ -2,7 +2,7 @@ name: Auto Merge
 
 on:
   schedule:
-    - cron: '00 00 * * *'  # 매일 자정 25분에 실행
+    - cron: '00 00 * * *'  # 매일 자정에 실행
     
 permissions:
   contents: write
@@ -15,30 +15,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2  # 코드 체크아웃
-      
-      - name: Label PRs for Auto Merge
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-        run: |
-          YESTERDAY=$(date -d "yesterday" +%y%m%d)
-          echo "Yesterday's Date: $YESTERDAY"
-          
-          # 전날 날짜를 포함하는 제목을 가진 오픈된 PR 목록을 조회
-          PRS=$(gh pr list --state open --json number,title --jq ".[] | select(.title | test(\".+/ $YESTERDAY /.+\")) | .number")
-          
-          # 해당 PR에 'automerge' 라벨 추가
-          for PR in $PRS; do
-            echo "Adding auto-merge label to PR #$PR"
-            gh pr edit $PR --add-label "automerge"
-          done
 
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install PyGithub
       
-      - name: Auto Merge PRs
-        uses: pascalgn/automerge-action@v0.16.3  # 자동 병합 액션 사용
+      - name: Execute Auto Merge Script
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-          MERGE_LABELS: "automerge"
-          MERGE_METHOD: "merge"
-          MERGE_COMMIT_MESSAGE: "pull-request-title"  # PR 제목을 커밋 메시지로 사용
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python auto_merge.py
