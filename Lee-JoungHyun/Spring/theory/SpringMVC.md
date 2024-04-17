@@ -1,6 +1,6 @@
 # Spring MVC 프레임워크
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/60d66ae7-5f64-44bc-b4b0-f484626a8090/b13ad55b-545d-4ce1-aecc-5b46e49011f8/Untitled.png)
+![Untitled](https://github.com/Lee-JoungHyun/SSAFY11th-Gwangju04-WebStudy/assets/98592001/f8797e0c-69d8-41f8-840b-fc04a9031a43)
 
 ## Spring MVC
 
@@ -27,7 +27,7 @@
 - View
     - Controller의 처리 결과 보여줄 응답 화면 생성
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/60d66ae7-5f64-44bc-b4b0-f484626a8090/09413fa8-ba7b-477d-bcca-851a1edcdeb9/Untitled.png)
+![Untitled (2)](https://github.com/Lee-JoungHyun/SSAFY11th-Gwangju04-WebStudy/assets/98592001/61d17e09-4253-4fca-bf82-6dcf14ef292d)
 
 **Servlet-applicationContext — Root-applicationContext**
 
