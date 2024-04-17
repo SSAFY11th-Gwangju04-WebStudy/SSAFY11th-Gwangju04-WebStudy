@@ -2,7 +2,7 @@ name: Auto Merge
 
 on:
   schedule:
-    - cron: '10 8 * * *'  # 매일 자정에 실행
+    - cron: '25 00 * * *'  # 매일 자정에 실행
     
 permissions:
   contents: write
