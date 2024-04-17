@@ -41,7 +41,7 @@
 
 ---
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/1994a625-d96d-4cd2-87ba-68af5df5ee85/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/webmvc1.png)
 
 - HttpServlet을 상속 받는다? ⇒ 해당 클래스에 종속적이다.
 - 종속적이지 않은 POJO.
@@ -94,7 +94,7 @@
 
 ---
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/7aa58e4c-ac6a-402a-8543-b6b4f9387485/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/webmvc2.png)
 
 - ViewResolver는 /foler/view_name.jsp의 주소를 만들어줌
 
@@ -102,15 +102,15 @@
 
 ---
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/80626c39-d478-4805-b846-8386f2954c9d/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/webmvc3.png)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/34067ccf-1cbd-4be4-ba19-c216e7b0df87/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/webmvc4.png)
 
 ## Spring MVC Project의 기본 구조
 
 ---
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/726069d1-00e0-4cd2-8581-84993bd06d1e/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/webmvc5.png)
 
 ## Spring MVC 구현
 
@@ -129,5 +129,3 @@
     5. JSP 코드 작성
 - Controller 작성
     - 좋은 디자인은 Controller가 많은 일을 하지 않고 Service에 처리를 위임
-    
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/b80f2648-94f1-4dac-9704-de739c50b512/Untitled.png)
