@@ -20,7 +20,7 @@
 
 > mybatis-config.xml (resources/com/ssafy/mybatis/config)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/91375e26-0e9d-4ead-abb3-ce6a1a9b597f/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/MyBatis1.png)
 
 - MyBatis Database info를 설정하는 파일.
 - line 10 - Database에 대한 세부 정보를 가진 파일을 알려줌.
@@ -31,7 +31,7 @@
 
 > Member(Class)Mapper.xml
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/a7752ff1-afbe-4539-b540-628e2b883644/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/SSAFYLectures/Spring/imgs/MyBatis2.png)
 
 - line 6~13 - Dto 객체에서의 속성과 DB 컬럼의 속성을 mapping 시켜주는 것
 위 코드에서는 user_id의 DB 컬럼을 MemberDto의 userId로 mapping, DB에 나온 결과를 Dto에 입력하기 위한 것
