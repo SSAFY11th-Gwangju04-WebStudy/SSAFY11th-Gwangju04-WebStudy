@@ -1,0 +1,144 @@
+{
+    "products":[
+        {
+            "id":0,
+            "img":"https://noona-hnm.netlify.app/pattern-jacket.jpeg",
+            "title":"벨티드 트윌 코트",
+            "price":99900,
+            "choice":true,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":1,
+            "img":"https://noona-hnm.netlify.app/ankle-jeans.jpeg",
+            "title":"슬림핏 맘 하이웨이스트 앵클 진",
+            "price":29900,
+            "choice":true,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":2,
+            "img":"https://noona-hnm.netlify.app/wide-jeans.jpeg",
+            "title":"와이드 하이웨이스트 진",
+            "price":39900,
+            "choice":false,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":3,
+            "img":"https://noona-hnm.netlify.app/cottom-dress.jpeg",
+            "title":"퍼프 슬리브 드레스",
+            "price":39900,
+            "choice":false,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":4,
+            "img":"https://noona-hnm.netlify.app/shirt-dress.jpeg",
+            "title":"프릴 디테일 드레스",
+            "price":29900,
+            "choice":true,
+            "new":false,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":5,
+            "img":"https://noona-hnm.netlify.app/flare-dress.jpeg",
+            "title":"시퀸 플레어 드레스",
+            "price":39900,
+            "choice":false,
+            "new":false,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":6,
+            "img":"https://noona-hnm.netlify.app/single-jacket.jpeg",
+            "title":"더블 브레스티드 재킷",
+            "price":39900,
+            "choice":true,
+            "new":false,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":7,
+            "img":"https://noona-hnm.netlify.app/oversize-hoodie.jpeg",
+            "title":"오버사이즈 집업 후디",
+            "price":99900,
+            "choice":false,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":8,
+            "img":"https://noona-hnm.netlify.app/track-jacket.jpeg",
+            "title":"아플리케 트랙 재킷",
+            "price":14900,
+            "choice":true,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":9,
+            "img":"https://noona-hnm.netlify.app/design-hoodie.jpeg",
+            "title":"프린트 후디",
+            "price":19900,
+            "choice":false,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":10,
+            "img":"https://noona-hnm.netlify.app/regular-wide-jeans.jpeg",
+            "title":"와이드 트윌 팬츠",
+            "price":19900,
+            "choice":true,
+            "new":false,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":11,
+            "img":"https://noona-hnm.netlify.app/high-jeans.jpeg",
+            "title":"플레어 로라이즈 진",
+            "price":29900,
+            "choice":true,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":12,
+            "img":"https://noona-hnm.netlify.app/mash-dress.jpeg",
+            "title":"셔링 메쉬 드레스",
+            "price":14900,
+            "choice":true,
+            "new":true,
+            "size":["S","M","L"]
+
+        },
+        {
+            "id":13,
+            "img":"https://noona-hnm.netlify.app/sweat-shirt.jpeg",
+            "title":"스웨트셔츠",
+            "price":29900,
+            "choice":false,
+            "new":false,
+            "size":["S","M","L"]
+
+        }
+    ]
+}
