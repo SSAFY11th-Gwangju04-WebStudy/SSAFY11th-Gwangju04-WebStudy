@@ -5,13 +5,18 @@ import hello.hellospring.repository.MemberRepository;
 
 import java.util.List;
 import java.util.Optional;
+
 public class MemberService {
     private final MemberRepository memberRepository;
+
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
     /**
      * 회원가입
+     * @param member
+     * @return
      */
     public Long join(Member member) {
         validateDuplicateMember(member); //중복 회원 검증
