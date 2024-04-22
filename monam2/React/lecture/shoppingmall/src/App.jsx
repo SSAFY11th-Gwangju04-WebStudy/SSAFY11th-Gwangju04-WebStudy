@@ -1,21 +1,26 @@
 
 import './App.css'
-import { Route, Routes } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import ProductAll from "./page/ProductAll";
 import Login from "./page/Login";
 import ProductDetail from "./page/ProductDetail";
 import ErrorPage from "./page/ErrorPage";
 import Navbar from './component/Navbar';
+import { useEffect, useState } from "react";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
+  //false면 로그인 안됨, true면 로그인 됨
+  const [authenticate, setAuthenticate] = useState(false);
 
   return (
     <>
       <Navbar/>
       <Routes>
         <Route path="/" element={<ProductAll/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/product/:id" element={<ProductDetail/>}/>
+        <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>}/>
+        <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate}/>}/>
         <Route path="/*" element={<ErrorPage/>}/>
 
       </Routes>

@@ -1,7 +1,11 @@
 .login-button{
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     margin: 20px;
+    gap: 10px;
+    font-size: large;
+    cursor: pointer;
 }
 
 .nav-section {
@@ -30,3 +34,46 @@
 .menu-list li {
     padding: 10px;
 }
+
+.navbar-serach-container {
+    border-bottom: 1.5px solid black;
+    padding: 0;
+    display: flex;
+    height: 30px;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-serach-container input[type=text]{
+    border: none;
+}
+
+.navbar-serach-container input[type=text]:focus{
+outline: none;
+}
+
+.product-card {
+    padding: 5px;
+    width: 300px;
+}
+.product-card:hover {
+    scale: 1.1;
+}
+
+.product-card img {
+    width: 100%;
+}
+
+.conscious-choice {
+    font-size: xx-small;
+    margin-bottom: 10px;
+}
+
+/* 로그인 페이지 */
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 상품 상세 페이지 */
