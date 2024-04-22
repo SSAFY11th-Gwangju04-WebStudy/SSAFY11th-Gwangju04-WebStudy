@@ -12,7 +12,7 @@
 - Red-Black Tree
     - 부모노드보다 작은 값을 가지는 노드는 왼쪽 자식으로, 큰 값을 가지는 노드는 오른쪽 자식으로 배치하여 데이터의 추가나 삭제 시 Tree가 한쪽으로 치우쳐지지 않도록 균형을 맞추는 Tree
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/609d46e8-84fd-4b9e-9a41-bd47c7d63d8e/10e189df-f5b5-49a6-a187-d962b314cfe7/Untitled.png)
+![Untitled](https://github.com/MJ-Kor/SSAFY11th-Gwangju04-WebStudy/blob/main/MJ-Kor/DataStructures/imgs/TreeSet.png)
 
 ## Tree 선언
 
