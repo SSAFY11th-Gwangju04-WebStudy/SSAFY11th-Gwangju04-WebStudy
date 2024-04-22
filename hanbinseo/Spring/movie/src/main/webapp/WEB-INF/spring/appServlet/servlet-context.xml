@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
+	<!-- <resources mapping="/img/**" location="/resources/img/" /> <resources 
+		mapping="/css/**" location="/resources/css/" /> <resources mapping="/js/**" 
+		location="/resources/js/" /> -->
+	<resources mapping="/assets/**" location="/resources/assets/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<context:component-scan
+		base-package="com.movie.*.controller" />
+
+	<beans:bean id="confirm"
+		class="com.movie.interceptor.ConfirmInterceptor" />
+
+	<interceptors>
+		<interceptor>
+
+			<!-- <mapping path="/article/*"/> -->
+			<mapping path="/movie/write" />
+			<mapping path="/movie/view" />
+			<mapping path="/movie/modify" />
+			<mapping path="/movie/delete" />
+			<!-- <exclude-mapping path="/user/log*"/> -->
+
+			<!-- <beans:bean class="com.ssafy.interceptor.ConfirmInterceptor"/> -->
+			<beans:ref bean="confirm" />
+		</interceptor>
+	</interceptors>
+
+	<!-- fileUpload -->
+	<!-- spring 5.x fileupload -->
+	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+		<beans:property name="defaultEncoding" value="UTF-8"/> <beans:property name="maxUploadSize" 
+		value="52428800"/> <beans:property name="maxInMemorySize" value="1048576"/> 
+		</beans:bean> -->
+	<!-- 6.x -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+
+	<!-- fileDownload -->
+	<beans:bean id="fileDownLoadView"
+		class="com.ssafy.board.view.FileDownLoadView" />
+	<beans:bean id="fileViewResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />
+	</beans:bean>
+
+
+</beans:beans>
