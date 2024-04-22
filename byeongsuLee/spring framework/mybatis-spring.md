@@ -1,11 +1,12 @@
 Mybatis-spring 
-
 - mybatisconfig.xml 삭제
 - dbinfo 파일 삭제
 - daoImpl 삭제
-- dao → mapper 변경
+- dao → mapper 변경 , @mapper 사용
 - transaction 어노테이션으로 commit , rollback 구현
 
+
+mybatis
 mybatis-config.xml
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/cd4c5c0a-1563-4707-afa2-6b081ed69d45/a2b5da81-4058-416b-93d6-7883b8d0194e/Untitled.png)
