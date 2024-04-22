@@ -19,6 +19,7 @@
     height: 70px;
     background-repeat: no-repeat;
     background-size: 100%;
+    cursor: pointer;
 }
 
 .menu-container {

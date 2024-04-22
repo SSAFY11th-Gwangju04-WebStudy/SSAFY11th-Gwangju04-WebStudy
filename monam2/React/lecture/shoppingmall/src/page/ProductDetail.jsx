@@ -35,7 +35,7 @@ const ProductDetail = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                {product.size.map(size=><Dropdown.Item href="#/action-1">{size}</Dropdown.Item>)}
+                {product?.size.map(size=><Dropdown.Item href="#/action-1">{size}</Dropdown.Item>)}
               </Dropdown.Menu>
             </Dropdown>
             <div className="d-grid gap-2">
