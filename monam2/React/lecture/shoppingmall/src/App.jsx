@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <Navbar/>
+      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate}/>
       <Routes>
         <Route path="/" element={<ProductAll/>}/>
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>}/>
