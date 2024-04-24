@@ -1,13 +1,17 @@
-let initialState = {
+let initState = {
   count: 0,
+  id: "oldId",
 };
 
-function reducer(state = initialState, action) {
-  if (action.type === "INCREMENT") {
-    return { ...state, count: state.count + 1 };
-  } else {
-    return state;
+const reducer = (state = initState, action) => {
+  switch (action.type) {
+    case "INCREASE":
+      return { ...state, count: state.count + action.payload.num };
+    case "GETID":
+      return { ...state, id: action.payload.newId };
+    default:
+      return { ...state };
   }
-}
+};
 
 export default reducer;
