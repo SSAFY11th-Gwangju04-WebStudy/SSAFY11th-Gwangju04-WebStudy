@@ -1,7 +1,9 @@
 name: Generate Study Log
 
 on:
-  push:
+  schedule:
+    - cron: '30 0 * * *'  # UTC 자정 반에 실행
+
 
 permissions:
   contents: write

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<context:component-scan
+		base-package="com.movie.*.model" />
+
+	<aop:aspectj-autoproxy />
+
+	<!-- <bean id="ds" class="org.springframework.jdbc.datasource.SimpleDriverDataSource"> 
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver"/> <property 
+		name="url" value="jdbc:mysql://127.0.0.1:3306/ssafyweb?serverTimezone=UTC&amp;useUniCode=yes&amp;characterEncoding=UTF-8"/> 
+		<property name="username" value="ssafy"/> <property name="password" value="ssafy"/> 
+		</bean> -->
+
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/ssafy"></property>
+	</bean>
+
+	<!-- <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+		<property name="dataSource" ref="dataSource"/> <property name="configLocation" 
+		value="classpath:mybatis-config.xml"/> <property name="mapperLocations"> 
+		<list> <value>classpath:mapper/member.xml</value> <value>classpath:mapper/board.xml</value> 
+		</list> </property> </bean> -->
+
+	<bean id="sqlSessionFactoryBean"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.movie.*.model" />
+		<property name="mapperLocations"
+			value="classpath:mapper/*.xml" />
+	</bean>
+
+	<!-- <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"> 
+		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg> </bean> -->
+
+	<!-- <bean id="boardMapper" class="org.mybtis.spring.mapper.MapperFactoryBean"> 
+		<property name="mapperInterface" value="com.ssafy.board.model.mapper.BoardMapper"/> 
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/> </bean> -->
+
+	<!-- mybatis에서 제공하는 scan 태그를 통해 repository(Mapper) interface들의 위치를 지정. -->
+	<mybatis-spring:scan
+		base-package="com.movie.*.model.mapper" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+</beans>
