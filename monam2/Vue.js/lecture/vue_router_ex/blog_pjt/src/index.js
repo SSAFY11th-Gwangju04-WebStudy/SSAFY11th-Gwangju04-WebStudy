@@ -1,11 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
 import ExPage from "./components/ExPage.vue";
 import List from "./components/List.vue";
-import DetailView from "./components/DetailView.vue";
+import DetailView from "./components/DetailView.vue"; 
+import MainPage from "./components/MainPage.vue"; 
 
 
 
 const routes = [
+  {
+    path: "/",
+    component: MainPage,
+  },
   {
     path: "/ex",
     component: ExPage,
